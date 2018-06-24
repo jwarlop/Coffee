@@ -1,5 +1,9 @@
+
 # Jupyter Notebooks
 .ipynb_checkpoints/
 
 # Apple Stuff
 .DS_Store
+
+#foursquare keys
+/server/fsKeys.py
