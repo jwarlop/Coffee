@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Coffee Homepage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="{{url_for('static',filename='app.js')}}"></script>…
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container" style="background-color: #4d2600; color:#dddddd">
+        <img class="img-responsive" 
+            src="{{url_for('static',filename='cafeshop.gif')}}" 
+            height='600' width='1000' class='center' >
+        <br>
+        <h2>Do coffee shops predict urban change?</h2>
+        <a href={{url_for('analyze')}}>Analyze Neighborhood</a>
+        <button type="button" style="color:#000000">Administration</button>
+        <br>
+        <br>
+        <small>Gary Frankhauser, Kevin Taylor, "Dutch", John Warlop </small><br>
+        <small>UCSD Data Science Bootcamp 2018</small>
+    </div>
+    <!-- This is a VERY bare bones version of a HTML5 template! -->
+</body>
+</html>
