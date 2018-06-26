@@ -17,5 +17,10 @@ def coffee(name=None):
 @app.route('/analyze')
 def analyze(name=None):
   return render_template('analyze.html')
+
+@app.route('/test')
+def test(name=None):
+  pdata = os.environment.get('KKEY','Default')
+  return 'Private data is: %s' % pdata
   
 
