@@ -1,3 +1,13 @@
+// Adding tile layer
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+		accessToken: 'pk.eyJ1IjoiZ2FyeWZyYW5raGF1c2VyIiwiYSI6ImNqaWR3MmtlNzA3MDczcHBuMWhqZWR1dXIifQ.bd98n5rTTf3obi7MR7IRlg',
+		id: 'mapbox.streets',
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	})
+	.addTo(myMap);
+
+
 // Link to GeoJSON
 var APILink = "http://data.beta.nyc//dataset/d6ffa9a4-c598-4b18-8caf-14abde6a5755/resource/74cdcc33-512f-439c-" +
 "a43e-c09588c4b391/download/60dbe69bcd3640d5bedde86d69ba7666geojsonmedianhouseholdincomecensustract.geojson";
@@ -59,3 +69,18 @@ d3.json(APILink, function(data) {
   legend.addTo(myMap);
 
 });
+
+
+/* //Fetch some data from a GeoJSON file
+$.getJSON("data/SD.js", function(json) {
+    var testlayer = L.geoJson(json),
+        sliderControl = L.control.sliderControl({
+            position: "bottomleft",
+            layer: testlayer
+        });
+
+    //Make sure to add the slider to the map ;-)
+    myMap.addControl(sliderControl);
+    //And initialize the slider
+    sliderControl.startSlider();
+}); */

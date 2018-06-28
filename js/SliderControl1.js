@@ -98,19 +98,22 @@ L.Control.SliderControl = L.Control.extend({
         _options = this.options;
         _extractTimestamp = this.extractTimestamp
         var index_start = _options.minValue;
+        var index_end = _options.maxValue;
         if(_options.showAllOnStart){
             index_start = _options.maxValue;
             if(_options.range) _options.values = [_options.minValue,_options.maxValue];
             else _options.value = _options.maxValue;
         }
         $("#leaflet-slider").slider({
+            
             range: _options.range,
             value: _options.value,
             values: _options.values,
             min: _options.minValue,
             max: _options.maxValue,
             sameDate: _options.sameDate,
-            step: 1,
+            step: 1/48,
+
             slide: function (e, ui) {
                 var map = _options.map;
                 var fg = L.featureGroup();
@@ -180,7 +183,7 @@ L.Control.SliderControl = L.Control.extend({
             }
         });
         if (!_options.range && _options.alwaysShowDate) {
-            $('#slider-timestamp').html(_extractTimeStamp(_options.markers[index_start].feature.properties[_options.timeAttribute], _options));
+            /* $('#slider-timestamp').html(_extractTimeStamp(_options.markers[index_start].feature.properties[_options.timeAttribute], _options)) */;
         }
         for (i = _options.minValue; i <= index_start; i++) {
             _options.map.addLayer(_options.markers[i]);
