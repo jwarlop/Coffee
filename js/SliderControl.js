@@ -15,7 +15,6 @@ L.Control.SliderControl = L.Control.extend({
         sameDate: false,
         alwaysShowDate : true,
         rezoom: null
-        step: 1
     },
 
     initialize: function (options) {
