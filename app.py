@@ -1,6 +1,6 @@
 import os
 import logging
-from flask import Flask,render_template,url_for
+from flask import Flask,render_template,url_for,json,jsonify
 
 
 cwd = os.getcwd()
@@ -17,5 +17,22 @@ def coffee(name=None):
 @app.route('/analyze')
 def analyze(name=None):
   return render_template('analyze.html')
+
+
+@app.route('/api/restate')
+def restate(name=None):
+  SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+  json_url = os.path.join(SITE_ROOT, "static/data", "restate.json")
+  data = json.load(open(json_url))
+  return jsonify(data)
   
+
+@app.route('/api/cshops')
+def cshops(name=None):
+  #Get path to project directory
+  SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+  json_url = os.path.join(SITE_ROOT, "static/data", "cshops.json")
+  data = json.load(open(json_url))
+  return jsonify(data)
+
 
