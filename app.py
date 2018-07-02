@@ -36,3 +36,8 @@ def cshops(name=None):
   return jsonify(data)
 
 
+@app.route('/mapit')
+def mapit(name=None):
+  return render_template('mapit.html')
+
+
