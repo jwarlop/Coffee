@@ -84,4 +84,3 @@ d3.json("server/data/choropleth_RE_Data.js", function(data) {
 
 });
 
-
