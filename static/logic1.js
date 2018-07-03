@@ -11,7 +11,7 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 	.addTo(myMap);
 
 //Fetch some data from a GeoJSON file
-$.getJSON("server/data/coffeeShops.js", function(json) {
+$.getJSON("coffeeShops.js", function(json) { //was server/data/coffee.. for flask, coffeeShops.js is put in static dir
     var testlayer = L.geoJson(json),
         sliderControl = L.control.sliderControl({
             position: "bottomleft",
@@ -29,7 +29,7 @@ var sliderControl1 = null;
 var geojson;
 
 // Grabbing data with d3...
-d3.json("server/data/choropleth_RE_Data.js", function(data) {
+d3.json("choropleth_RE_Data.js", function(data) {
 
   // Creating a new choropleth layer
   geojson = L.choropleth(data, {
