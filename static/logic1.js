@@ -11,7 +11,8 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 	.addTo(myMap);
 
 //Fetch some data from a GeoJSON file
-$.getJSON("coffeeShops.js", function(json) { //was server/data/coffee.. for flask, coffeeShops.js is put in static dir
+$.getJSON("coffeeShops.json", function(json) { //was server/data/coffee.. for flask, coffeeShops.js is put in static dir
+  console.log(json)
     var testlayer = L.geoJson(json),
         sliderControl = L.control.sliderControl({
             position: "bottomleft",
