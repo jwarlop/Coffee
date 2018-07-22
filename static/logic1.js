@@ -1,5 +1,4 @@
 var sliderControl = null;
-
 var myMap = L.map('map').setView([32.8242404,-117.3891702], 10);
 
 // Adding tile layer
@@ -12,7 +11,8 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 	.addTo(myMap);
 
 //Fetch some data from a GeoJSON file
-$.getJSON("SD.js", function(json) {//was data/SD.js changed for flask/heroku 
+$.getJSON("coffeeShops.json", function(json) { //was server/data/coffee.. for flask, coffeeShops.js is put in static dir
+  console.log(json)
     var testlayer = L.geoJson(json),
         sliderControl = L.control.sliderControl({
             position: "bottomleft",
@@ -26,18 +26,16 @@ $.getJSON("SD.js", function(json) {//was data/SD.js changed for flask/heroku
 });
 
 // Link to GeoJSON
-var APILink = "http://data.beta.nyc//dataset/d6ffa9a4-c598-4b18-8caf-14abde6a5755/resource/74cdcc33-512f-439c-" +
-"a43e-c09588c4b391/download/60dbe69bcd3640d5bedde86d69ba7666geojsonmedianhouseholdincomecensustract.geojson";
 var sliderControl1 = null;
 var geojson;
 
 // Grabbing data with d3...
-d3.json(APILink, function(data) {
+d3.json("choropleth_RE_Data.js", function(data) {
 
   // Creating a new choropleth layer
   geojson = L.choropleth(data, {
     // Which property in the features to use
-    valueProperty: "MHI",
+    valueProperty: "med_val",
     // Color scale
     scale: ["#ffffb2", "#b10026"],
     // Number of breaks in step range
@@ -52,8 +50,8 @@ d3.json(APILink, function(data) {
     },
     // Binding a pop-up to each layer
     onEachFeature: function(feature, layer) {
-      layer.bindPopup(feature.properties.COUNTY + " " + feature.properties.State + "<br>Median Home Value:<br>" +
-        "$" + feature.properties.MHI);
+      layer.bindPopup(feature.properties.region + "<br>Median Home Value:<br>" +
+        "$" + feature.properties.med_val);
     }
   }).addTo(myMap);
 
@@ -87,16 +85,3 @@ d3.json(APILink, function(data) {
 
 });
 
-//Fetch some data from a GeoJSON file
-$.getJSON("SD.js", function(json) { //was data/SD.js changed for flask/heroku capability
-    var testlayer = L.geoJson(json),
-        sliderControl1 = L.control.sliderControl({
-            position: "bottomleft",
-            layer: testlayer
-        });
-
-    //Make sure to add the slider to the map ;-)
-    myMap.addControl(sliderControl1);
-    //And initialize the slider
-    sliderControl1.startSlider();
-});

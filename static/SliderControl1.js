@@ -5,7 +5,7 @@ L.Control.SliderControl = L.Control.extend({
         timeAttribute: 'time',
         isEpoch: false,     // whether the time attribute is seconds elapsed from epoch
         startTimeIdx: 0,    // where to start looking for a timestring
-        timeStrLength: 10,  // the size of  yyyy-mm-dd hh:mm:ss - if millis are present this will be larger
+        timeStrLength: 7,  // the size of  yyyy-mm-dd hh:mm:ss - if millis are present this will be larger
         maxValue: -1,
         minValue: 0,
         showAllOnStart: false,
@@ -51,7 +51,7 @@ L.Control.SliderControl = L.Control.extend({
 
         // Create a control sliderContainer with a jquery ui slider
         var sliderContainer = L.DomUtil.create('div', 'slider', this._container);
-        $(sliderContainer).append('<div id="slider-timestamp" style="width:200px; margin-top:20px; background-color:#FFFFFF; text-align:center; border-radius:5px;"></div></div><div id="leaflet-slider" style="width:600px"><div class="ui-slider-handle"></div>');
+        $(sliderContainer).append('<div id="slider-timestamp" style="width:200px; margin-top:13px; background-color:#FFFFFF; text-align:center; border-radius:5px;"></div><div id="leaflet-slider" style="width:600px"><div class="ui-slider-handle"></div></div>');
         //Prevent map panning/zooming while using the slider
         $(sliderContainer).mousedown(function () {
             map.dragging.disable();
@@ -98,22 +98,19 @@ L.Control.SliderControl = L.Control.extend({
         _options = this.options;
         _extractTimestamp = this.extractTimestamp
         var index_start = _options.minValue;
-        var index_end = _options.maxValue;
         if(_options.showAllOnStart){
             index_start = _options.maxValue;
             if(_options.range) _options.values = [_options.minValue,_options.maxValue];
             else _options.value = _options.maxValue;
         }
         $("#leaflet-slider").slider({
-            
             range: _options.range,
             value: _options.value,
             values: _options.values,
             min: _options.minValue,
             max: _options.maxValue,
             sameDate: _options.sameDate,
-            step: 1/48,
-
+            step: 1,
             slide: function (e, ui) {
                 var map = _options.map;
                 var fg = L.featureGroup();
@@ -183,7 +180,7 @@ L.Control.SliderControl = L.Control.extend({
             }
         });
         if (!_options.range && _options.alwaysShowDate) {
-            /* $('#slider-timestamp').html(_extractTimeStamp(_options.markers[index_start].feature.properties[_options.timeAttribute], _options)) */;
+            $('#slider-timestamp').html(_extractTimeStamp(_options.markers[index_start].feature.properties[_options.timeAttribute], _options));
         }
         for (i = _options.minValue; i <= index_start; i++) {
             _options.map.addLayer(_options.markers[i]);
